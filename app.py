@@ -23,6 +23,8 @@ def read_plate():
 
     try:
         text, (cx, cy), plate_found = detect_and_read_plate(path)
+        cx, cy = int(cx), int(cy)  # ✅ Fix: convert NumPy int to Python int
+
         return jsonify({
             "status": "success" if plate_found else "fail",
             "data": {
